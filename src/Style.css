@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+    color: #252528;
+}
+
+.cardPlaylist {
+    display: inline-block;
+    border: 2px solid #d9d9d9;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.cardPlaylist img {
+    max-width: 150px;
+}
+
+.cardPlaylist button {
+    display: inline-block;
+    width: 100%;
+    background-color: #6fff7d;
+    border-color: transparent;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
