@@ -1,6 +1,7 @@
 import './Style.css';
 import data from './data.js';
 import Playlist from './components/Playlist';
+import Searchbar from './components/Searchbar';
 
 function App() {
     const API_KEY = process.env.REACT_APP_API_KEY;
@@ -11,7 +12,8 @@ function App() {
     return (
         <div className="App">
             <h1>My Playlist</h1>
-            <Playlist image={image} albumName={albumName} artistsName={artistsName} buttonText="Select" />
+            <Searchbar />
+            {/* <Playlist image={image} albumName={albumName} artistsName={artistsName} buttonText="Select" /> */}
         </div>
     );
 }
