@@ -1,12 +1,12 @@
-function App({image, albumName, artistsName, buttonText}) {
+function Playlist({url, title, artist}) {
     return (
         <div className='cardPlaylist'>
-            <img src={image} alt={albumName + " " + artistsName} />
-            <h3>{albumName}</h3>
-            <p>{artistsName}</p>
-            <button>{buttonText}</button>
+            <img src={url} alt={title} />
+            <h3>{title}</h3>
+            <p>{artist}</p>
+            <button>Select</button>
         </div>
     );
 }
 
-export default App;
+export default Playlist;
