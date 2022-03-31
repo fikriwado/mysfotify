@@ -1,14 +1,29 @@
 body {
     text-align: center;
     color: #252528;
+    background-color: #fff3e1;
+    padding: 40px;
+}
+
+.btn-green {
+    color: #29743d;
+    background-color: #6fff7d;
+    font-weight: 600;
+    transition: background-color .3s;
+}
+
+.btn-green:hover {
+    cursor: pointer;
+    background-color: #5adb67;
 }
 
 .cardPlaylist {
     display: inline-block;
+    min-width: 300px;
     border: 2px solid #d9d9d9;
     padding: 30px;
     border-radius: 5px;
-    margin-top: 50px;
+    margin: 50px;
 }
 
 .cardPlaylist img {
@@ -24,4 +39,21 @@ body {
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
+}
+
+.form-search input {
+    padding: 10px 20px;
+    border-radius: 0;
+    outline: none;
+}
+
+.form-search input[type='text'] {
+    width: 230px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 0 0 5px;
+}
+
+.form-search input[type='submit'] {
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #59ec68;
 }

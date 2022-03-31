@@ -4,7 +4,7 @@ function Playlist({url, title, artist}) {
             <img src={url} alt={title} />
             <h3>{title}</h3>
             <p>{artist}</p>
-            <button>Select</button>
+            <button className="btn-green">Select</button>
         </div>
     );
 }

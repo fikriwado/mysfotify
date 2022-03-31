@@ -31,11 +31,11 @@ function Searchbar({ accessToken, onSuccess }) {
                 <input
                     type="text"
                     name="query"
-                    placeholder="Search..."
+                    placeholder="masukkan keyword"
                     onChange={e => setInputSearch(e.target.value)}
                     required
                 />
-                <input type="submit" className="btn-primary" value="Search" />
+                <input type="submit" className="btn-green" value="Search" />
             </div>
         </form>
     );
