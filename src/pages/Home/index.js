@@ -4,20 +4,31 @@ import Playlist from '../../components/Playlist';
 import Searchbar from '../../components/Searchbar';
 
 function Home() {
-    const [isAuthorize, setIsAuthorize] = useState(false);
-    const [accessToken, setAccessToken] = useState('');
     const [tracks, setTracks] = useState([]);
+    const [accessToken, setAccessToken] = useState('');
+    const [isAuthorize, setIsAuthorize] = useState(false);
+    const [isSearch, setIsSearch] = useState(false);
+    const [selectedTrackURI, setSelectedTrackURI] = useState([]);
 
     useEffect(() => {
         const accessToken = new URLSearchParams(window.location.hash).get("#access_token");
         setAccessToken(accessToken);
         setIsAuthorize(accessToken !== null);
-    }, [isAuthorize]);
-
+    }, []);
+    
     const getSpotifyLinkAuthorize = () => {
         const state = Date.now().toString();
         const clientId = process.env.REACT_APP_API_KEY;
         return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
+    };
+    
+    const toggleSelect = (track) => {
+        const uri = track.uri;
+        if (selectedTrackURI.includes(uri)) {
+            setSelectedTrackURI(selectedTrackURI.filter((item) => item !== uri));
+        } else {
+            setSelectedTrackURI([...selectedTrackURI, uri]);
+        }
     };
 
     return (
@@ -46,6 +57,7 @@ function Home() {
                                 url={track.album.images[0].url}
                                 title={track.name}
                                 artist={track.artists[0].name}
+                                toggleSelect={() => toggleSelect(track)}
                             />
                         ))}
                     </div>
