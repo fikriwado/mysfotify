@@ -16,12 +16,43 @@ function Home() {
         setIsAuthorize(accessToken !== null);
     }, []);
     
+    useEffect(() => {    
+        if (!isSearch) {
+            const selectedTracks = filterSelectedTracks();
+            setTracks(selectedTracks);
+        }
+
+    }, [selectedTrackURI]);
+    
     const getSpotifyLinkAuthorize = () => {
         const state = Date.now().toString();
         const clientId = process.env.REACT_APP_API_KEY;
         return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
     };
     
+    const filterSelectedTracks = () => {
+        return tracks.filter((track) => selectedTrackURI.includes(track.uri));
+    };
+
+    const handleSearch = (searchTracks) => {
+        setIsSearch(true);
+        const selectedTracks = filterSelectedTracks();
+        
+        const searchDistinctTracks = searchTracks.filter(
+            (track) => !selectedTrackURI.includes(track.uri)
+        );
+
+        setTracks([...selectedTracks, ...searchDistinctTracks]);
+    };
+
+    
+    const clearSearch = () => {
+        const selectedTracks = filterSelectedTracks();
+
+        setTracks(selectedTracks);
+        setIsSearch(false);
+    };
+
     const toggleSelect = (track) => {
         const uri = track.uri;
         if (selectedTrackURI.includes(uri)) {
@@ -45,7 +76,8 @@ function Home() {
                     <h1>Musify Playlist</h1>
                     <Searchbar
                         accessToken={accessToken}
-                        onSuccess={(tracks) => setTracks(tracks)}
+                        onSuccess={(tracks) => handleSearch(tracks)}
+                        clearSearch={clearSearch}
                     />
 
                     {tracks.length === 0 && <p>No tracks</p>}

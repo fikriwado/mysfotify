@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import config from "../../utils/config";
 
-function Searchbar({ accessToken, onSuccess }) {
+function Searchbar({ accessToken, onSuccess, clearSearch }) {
     const [inputSearch, setInputSearch] = useState();
 
     const handleSubmit = async (e) => {
@@ -26,18 +26,24 @@ function Searchbar({ accessToken, onSuccess }) {
     }
 
     return (
-        <form className="form-search" onSubmit={(e) => handleSubmit(e)}>
-            <div className="form-group">
-                <input
-                    type="text"
-                    name="query"
-                    placeholder="masukkan keyword"
-                    onChange={e => setInputSearch(e.target.value)}
-                    required
-                />
-                <input type="submit" className="btn-green" value="Search" />
-            </div>
-        </form>
+        <>
+            <form className="form-search" onSubmit={(e) => handleSubmit(e)}>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        name="query"
+                        placeholder="masukkan keyword"
+                        onChange={e => setInputSearch(e.target.value)}
+                        required
+                    />
+                    <input type="submit" className="btn-green" value="Search" />
+                </div>
+            </form>
+            
+            <button className="btn btn-red btn-refresh" onClick={clearSearch}>
+                Refresh
+            </button>
+        </>
     );
 }
 

@@ -5,16 +5,47 @@ body {
     padding: 40px;
 }
 
+.btn {
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn-green {
     color: #29743d;
     background-color: #6fff7d;
+    border: 1px solid #59ec68;
     font-weight: 600;
     transition: background-color .3s;
 }
 
 .btn-green:hover {
-    cursor: pointer;
     background-color: #5adb67;
+}
+
+.btn-red {
+    color: white;
+    background-color: #da4949;
+    border: 1px solid #eb5454;
+    font-weight: 600;
+    transition: background-color .3s;
+}
+
+.btn-red:hover {
+    background-color: #c03838;
+}
+
+.btn-refresh {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.track-list {
+    margin-top: 50px;
 }
 
 .cardPlaylist {
