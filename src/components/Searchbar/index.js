@@ -28,7 +28,7 @@ function Searchbar({ accessToken, onSuccess, clearSearch }) {
     return (
         <>
             <form className="form-search" onSubmit={(e) => handleSubmit(e)}>
-                <div className="form-group">
+                <div className="form-group fg-search">
                     <input
                         type="text"
                         name="query"
