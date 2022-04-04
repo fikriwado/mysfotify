@@ -1,5 +1,16 @@
 import config from "./config";
 
+export const searchTrack = async (query, accessToken) => {
+	const response = await fetch(`${config.SPOTIFY_BASE_URL}/search?type=track&q=${query}`, {
+		headers: {
+			Authorization: "Bearer " + accessToken,
+			"Content-Type": "application/json",
+		},
+	}).then((data) => data.json());
+
+	return response;
+};
+
 export const getUserProfile = async (accessToken) => {
 	const response = await fetch(`${config.SPOTIFY_BASE_URL}/me`,{
 		headers: {

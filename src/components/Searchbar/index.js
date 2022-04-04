@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import config from "../../utils/config";
+import { searchTrack } from "../../utils/fetchApi";
 
 function Searchbar({ accessToken, onSuccess, clearSearch }) {
     const [inputSearch, setInputSearch] = useState();
@@ -8,16 +8,7 @@ function Searchbar({ accessToken, onSuccess, clearSearch }) {
         e.preventDefault();
 
         try {
-            const response = await fetch(
-                `${config.SPOTIFY_BASE_URL}/search?type=track&q=${inputSearch}`,
-                {
-                    headers: {
-                        Authorization: "Bearer " + accessToken,
-                        "Content-Type": "application/json",
-                    },
-                }
-            ).then((data) => data.json());
-
+            const response = await searchTrack(inputSearch, accessToken);
             const tracks = response.tracks.items;
             onSuccess(tracks);
         } catch (e) {
