@@ -4,28 +4,26 @@ import Playlist from '../../components/Playlist';
 import Searchbar from '../../components/Searchbar';
 import CreatePlaylist from '../../components/CreatePlaylist';
 import { getUserProfile } from '../../utils/fetchApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/authSlice';
 
 function Home() {
     const [tracks, setTracks] = useState([]);
-    const [accessToken, setAccessToken] = useState('');
-    const [isAuthorized, setIsAuthorized] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
     const [selectedTrackURI, setSelectedTrackURI] = useState([]);
     const [selectedTracks, setSelectedTracks] = useState([]);
-    const [user, setUser] = useState({});
+    const { isAuthorized } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.hash);
         const accessToken = params.get("#access_token");
 
         if (accessToken !== null) {
-            setAccessToken(accessToken);
-            setIsAuthorized(accessToken !== null);
-
             const setUserProfile = async () => {
                 try {
                     const response = await getUserProfile(accessToken);
-                    setUser(response);
+                    dispatch(login({accessToken: accessToken, user: response}));
                 } catch (e) {
                     alert(e);
                 }
@@ -60,8 +58,6 @@ function Home() {
             (track) => selectedTrackURI.includes(track.uri)
         );
 
-        console.info(selectedSearchTracks);
-
         setTracks([...new Set([...selectedSearchTracks, ...searchTracks])]);
     };
     
@@ -93,17 +89,12 @@ function Home() {
             {isAuthorized && (
                 <>
                     <h1>Musify Playlist</h1>
-                    <CreatePlaylist
-                        accessToken={accessToken}
-                        userId={user.id}
-                        uris={selectedTrackURI}
-                    />
+                    <CreatePlaylist uris={selectedTrackURI} />
 
                     <hr />
 
                     <h3>Search Playlist</h3>
                     <Searchbar
-                        accessToken={accessToken}
                         onSuccess={(tracks) => handleSearch(tracks)}
                         clearSearch={clearSearch}
                     />

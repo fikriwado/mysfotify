@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 import { searchTrack } from "../../utils/fetchApi";
 
-function Searchbar({ accessToken, onSuccess, clearSearch }) {
+function Searchbar({ onSuccess, clearSearch }) {
     const [inputSearch, setInputSearch] = useState();
+    const { accessToken } = useSelector((state) => state.auth);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
