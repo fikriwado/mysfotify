@@ -13,8 +13,13 @@ export const authSlice = createSlice({
             state.user = action.payload.user;
             state.accessToken = action.payload.accessToken;
         },
+        logout: (state) => {
+            state.isAuthorized = false;
+            state.user = {};
+            state.accessToken = "";
+        }
     },
 });
 
-export const { login } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import config from '../../utils/config';
 import Playlist from '../../components/Playlist';
 import Searchbar from '../../components/Searchbar';
-import CreatePlaylist from '../../components/CreatePlaylist';
+import FormPlaylist from '../../components/FormPlaylist';
 import { getUserProfile } from '../../utils/fetchApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/authSlice';
@@ -89,7 +89,7 @@ function Home() {
             {isAuthorized && (
                 <>
                     <h1>Musify Playlist</h1>
-                    <CreatePlaylist uris={selectedTrackURI} />
+                    <FormPlaylist uris={selectedTrackURI} />
 
                     <hr />
 
