@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { addTracksToPlaylist, createPlaylist } from "../../utils/fetchApi";
 
 function Playlist({ uris }) {
-    const { accessToken, userId } = useSelector((state) => state.auth);
+    const { accessToken, userId } = useSelector((state) => ({
+        accessToken: state.auth.accessToken,
+        userId: state.auth.user.id,
+    }));
+
     const [playlist, setPlaylist] = useState({
         title: "",
         description: "",
@@ -11,7 +15,6 @@ function Playlist({ uris }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.info(name, value);
         setPlaylist({ ...playlist, [name]: value });
     };
 

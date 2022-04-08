@@ -10,7 +10,7 @@ const Navbar = () => {
 				<h1>Musify</h1>
 			</div>
 			<div className="navbar-login">
-				<button className="btn btn-primary" onClick={() => dispatch(logout())}>Logout</button>
+				<button className="btn btn-green" onClick={() => dispatch(logout())}>Logout</button>
 			</div>
 		</nav>
 	);
