@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { useSelector } from "react-redux";
-import { searchTrack } from "../../utils/fetchApi";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { searchTrack } from '../../utils/fetchApi';
 
-function Searchbar({ onSuccess, clearSearch }) {
+function Searchbar({ onSuccess, onClearSearch }) {
     const [inputSearch, setInputSearch] = useState();
     const { accessToken } = useSelector((state) => state.auth);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         try {
@@ -16,7 +16,12 @@ function Searchbar({ onSuccess, clearSearch }) {
         } catch (e) {
             alert(e);
         }
-    }
+    };
+
+    const clearSearch = () => {
+        setInputSearch('');
+        onClearSearch();
+    };
 
     return (
         <>
@@ -26,13 +31,13 @@ function Searchbar({ onSuccess, clearSearch }) {
                         type="text"
                         name="query"
                         placeholder="masukkan keyword"
-                        onChange={e => setInputSearch(e.target.value)}
+                        onChange={(e) => setInputSearch(e.target.value)}
                         required
                     />
                     <input type="submit" className="btn-green" value="Search" />
                 </div>
             </form>
-            
+
             <button className="btn btn-red btn-refresh" onClick={clearSearch}>
                 Refresh
             </button>

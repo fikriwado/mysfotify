@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
-import { addTracksToPlaylist, createPlaylist } from "../../utils/fetchApi";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { addTracksToPlaylist, createPlaylist } from '../../utils/fetchApi';
 
 function Playlist({ uris }) {
     const { accessToken, userId } = useSelector((state) => ({
@@ -9,8 +9,8 @@ function Playlist({ uris }) {
     }));
 
     const [playlist, setPlaylist] = useState({
-        title: "",
-        description: "",
+        title: '',
+        description: '',
     });
 
     const handleChange = (e) => {
@@ -18,7 +18,7 @@ function Playlist({ uris }) {
         setPlaylist({ ...playlist, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         try {
@@ -30,11 +30,11 @@ function Playlist({ uris }) {
             await addTracksToPlaylist(accessToken, responsePlaylist.id, uris);
 
             setPlaylist({
-                title: "",
-                description: "",
+                title: '',
+                description: '',
             });
 
-            alert("Playlist created!");
+            alert('Playlist created!');
         } catch (e) {
             alert(e);
         }
@@ -65,7 +65,7 @@ function Playlist({ uris }) {
                         onChange={handleChange}
                         required
                         rows={4}
-                    ></textarea>
+                    />
                 </div>
                 <button className="btn btn-green" type="submit">Submit</button>
             </form>

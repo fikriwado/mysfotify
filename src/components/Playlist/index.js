@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-function Playlist({url, title, artist, toggleSelect}) {
-    const [isSelected, setIsSelected] = useState(false);
+function Playlist({
+    url, title, artist, select, toggleSelect,
+}) {
+    const [isSelected, setIsSelected] = useState(select);
 
     const handleSelect = () => {
         setIsSelected(!isSelected);
@@ -9,12 +11,12 @@ function Playlist({url, title, artist, toggleSelect}) {
     };
 
     return (
-        <div className='cardPlaylist'>
+        <div className="cardPlaylist">
             <img src={url} alt={title} />
             <h3>{title}</h3>
             <p>{artist}</p>
             <button className="btn-green" onClick={handleSelect}>
-                {isSelected ? "Deselect" : "Select"}
+                {isSelected ? 'Deselect' : 'Select'}
             </button>
         </div>
     );

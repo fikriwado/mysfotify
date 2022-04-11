@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import config from '../../utils/config';
 import { getUserProfile } from '../../utils/fetchApi';
-import { useDispatch } from 'react-redux';
 import { login } from '../../redux/authSlice';
-import { useHistory } from "react-router-dom";
 
 function Login() {
     const dispatch = useDispatch();
@@ -11,13 +11,13 @@ function Login() {
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.hash);
-        const accessToken = params.get("#access_token");
+        const accessToken = params.get('#access_token');
 
         if (accessToken !== null) {
-            const setUserProfile = async () => {
+            const setUserProfile = async() => {
                 try {
                     const response = await getUserProfile(accessToken);
-                    dispatch(login({accessToken: accessToken, user: response}));
+                    dispatch(login({ accessToken, user: response }));
                     history.push('/create-playlist');
                 } catch (e) {
                     alert(e);
