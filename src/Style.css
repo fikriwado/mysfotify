@@ -2,6 +2,7 @@ body {
     text-align: center;
     color: #403a3a;
     background-color: #fff3e1;
+    padding: 4px 20px 20px;
 }
 
 .btn {
@@ -44,20 +45,42 @@ body {
 }
 
 .track-list {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     margin-top: 50px;
 }
 
 .cardPlaylist {
-    display: inline-block;
-    min-width: 300px;
-    border: 2px solid #d9d9d9;
-    padding: 30px;
-    border-radius: 5px;
-    margin: 50px;
+    width: 200px;
+    border-radius: 8px;
+    padding: 14px;
+    background-color: #ffe3b5;
 }
 
 .cardPlaylist img {
-    max-width: 150px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.wrap-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.wrap-info h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 12px 0;
+}
+
+.wrap-info p {
+    margin: 0;
 }
 
 .cardPlaylist button {
@@ -69,6 +92,7 @@ body {
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
+    margin-top: 20px;
 }
 
 .form-group {

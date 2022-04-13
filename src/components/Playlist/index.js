@@ -13,8 +13,10 @@ function Playlist({
     return (
         <div className="cardPlaylist">
             <img src={url} alt={title} />
-            <h3>{title}</h3>
-            <p>{artist}</p>
+            <div className="wrap-info">
+                <h3>{title}</h3>
+                <p>{artist}</p>
+            </div>
             <button className="btn-green" onClick={handleSelect}>
                 {isSelected ? 'Deselect' : 'Select'}
             </button>
