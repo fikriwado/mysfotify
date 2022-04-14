@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {
+    Container, SimpleGrid, Heading, Text,
+} from '@chakra-ui/react';
 import Playlist from '../../components/Playlist';
 import Searchbar from '../../components/Searchbar';
 import FormPlaylist from '../../components/FormPlaylist';
@@ -46,21 +49,21 @@ function CreatePlaylist() {
     };
 
     return (
-        <div className="container">
+        <Container maxW="100%">
             <Navbar />
+
+            <Heading as="h3" size="md" align="center">Create Playlist</Heading>
             <FormPlaylist uris={selectedTrackURI} />
 
-            <hr />
-
-            <h3>Search Playlist</h3>
+            <Heading as="h3" size="md" mt={14} align="center">Search Playlist</Heading>
             <Searchbar
                 onSuccess={(tracks) => handleSearch(tracks)}
                 onClearSearch={clearSearch}
             />
 
-            {tracks.length === 0 && <p>No tracks</p>}
+            {tracks.length === 0 && <Text align="center">No tracks</Text>}
 
-            <div className="track-list">
+            <SimpleGrid columns={[1, 2, null, 4, 5, 6]} spacing={10}>
                 {tracks.map((track) => (
                     <Playlist
                         key={track.id}
@@ -71,8 +74,8 @@ function CreatePlaylist() {
                         toggleSelect={() => toggleSelect(track)}
                     />
                 ))}
-            </div>
-        </div>
+            </SimpleGrid>
+        </Container>
     );
 }
 

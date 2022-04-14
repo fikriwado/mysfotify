@@ -1,19 +1,23 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import {
+    Flex, Box, Heading, Button, Spacer,
+} from '@chakra-ui/react';
 import { logout } from '../../redux/authSlice';
 
 function Navbar() {
     const dispatch = useDispatch();
 
     return (
-        <nav className="navbar">
-            <div className="navbar-brand">
-                <h1>Musify</h1>
-            </div>
-            <div className="navbar-login">
-                <button className="btn btn-green" onClick={() => dispatch(logout())}>Logout</button>
-            </div>
-        </nav>
+        <Flex alignItems="center" pt={2} pb={3} mb={10} borderBottom="1px" borderColor="gray.400">
+            <Box p="2">
+                <Heading as="h1" size="lg">Musify</Heading>
+            </Box>
+            <Spacer />
+            <Box>
+                <Button colorScheme="teal" onClick={() => dispatch(logout())}>Logout</Button>
+            </Box>
+        </Flex>
     );
 }
 

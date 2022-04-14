@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import {
+    Box, Input, Textarea, Text, Button,
+} from '@chakra-ui/react';
 import { addTracksToPlaylist, createPlaylist } from '../../utils/fetchApi';
 
 function Playlist({ uris }) {
@@ -41,35 +44,35 @@ function Playlist({ uris }) {
     };
 
     return (
-        <div className="form-playlist">
-            <h3>Create Playlist</h3>
-            <form className="form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        value={playlist.title}
-                        onChange={handleChange}
-                        required
-                        minLength={10}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="desc">Description</label>
-                    <textarea
-                        id="desc"
-                        name="description"
-                        value={playlist.description}
-                        onChange={handleChange}
-                        required
-                        rows={4}
-                    />
-                </div>
-                <button className="btn btn-green" type="submit">Submit</button>
+        <Box maxW="md" p={4} mx="auto">
+            <form onSubmit={handleSubmit}>
+                <Text mb="8px" align="left">Title</Text>
+                <Input
+                    bg="white"
+                    type="text"
+                    name="title"
+                    id="title"
+                    value={playlist.title}
+                    onChange={handleChange}
+                    required
+                    minLength={10}
+                    mb="15px"
+                />
+
+                <Text mb="8px" align="left">Description</Text>
+                <Textarea
+                    bg="white"
+                    id="desc"
+                    name="description"
+                    value={playlist.description}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    mb="15px"
+                />
+                <Button colorScheme="teal" width="100%">Submit</Button>
             </form>
-        </div>
+        </Box>
     );
 }
 

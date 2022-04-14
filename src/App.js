@@ -1,4 +1,4 @@
-import './Style.css';
+// import './Style.css';
 import React, { useSelector } from 'react-redux';
 import {
     Redirect, BrowserRouter as Router, Switch, Route,

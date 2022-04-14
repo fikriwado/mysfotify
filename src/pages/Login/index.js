@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Container, Box, Button } from '@chakra-ui/react';
 import config from '../../utils/config';
 import { getUserProfile } from '../../utils/fetchApi';
 import { login } from '../../redux/authSlice';
@@ -33,10 +34,16 @@ function Login() {
         return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${config.RESPONSE_TYPE}&redirect_uri=${config.REDIRECT_URI}&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
     };
     return (
-        <div className="login-app">
-            <p>Before using the app, please login to Spotify here.</p>
-            <a href={getSpotifyLinkAuthorize()} className="btn-primary">Login</a>
-        </div>
+        <Container align="center" p={5}>
+            <Box my={10}>
+                <p>Before using the app, please login to Spotify here.</p>
+                <a href={getSpotifyLinkAuthorize()}>
+                    <Button colorScheme="teal" mt={3}>
+                        Login
+                    </Button>
+                </a>
+            </Box>
+        </Container>
     );
 }
 

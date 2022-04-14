@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import {
+    Box, InputGroup, Input, Button,
+} from '@chakra-ui/react';
 import { searchTrack } from '../../utils/fetchApi';
 
 function Searchbar({ onSuccess, onClearSearch }) {
@@ -24,24 +27,23 @@ function Searchbar({ onSuccess, onClearSearch }) {
     };
 
     return (
-        <>
-            <form className="form-search" onSubmit={(e) => handleSubmit(e)}>
-                <div className="form-group fg-search">
-                    <input
+        <Box maxW="md" p={4} mx="auto" align="center">
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <InputGroup>
+                    <Input
+                        bg="white"
                         type="text"
                         name="query"
                         placeholder="masukkan keyword"
                         onChange={(e) => setInputSearch(e.target.value)}
                         required
                     />
-                    <input type="submit" className="btn-green" value="Search" />
-                </div>
+                    <Button px={6} ml={2} colorScheme="teal" type="submit">Search</Button>
+                </InputGroup>
             </form>
 
-            <button className="btn btn-red btn-refresh" onClick={clearSearch}>
-                Refresh
-            </button>
-        </>
+            <Button colorScheme="red" mx="auto" onClick={clearSearch} mt="20px">Refresh</Button>
+        </Box>
     );
 }
 
