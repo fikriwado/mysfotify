@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import store from './redux/store.ts';
 
 const theme = extendTheme({
     styles: {

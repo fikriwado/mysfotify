@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
-    Box, InputGroup, Input, Button,
+    Box, Center, InputGroup, Input, Button,
 } from '@chakra-ui/react';
+import { TRootState } from '../../redux/store';
 import { searchTrack } from '../../utils/fetchApi';
 
-function Searchbar({ onSuccess, onClearSearch }) {
-    const [inputSearch, setInputSearch] = useState();
-    const { accessToken } = useSelector((state) => state.auth);
+interface Props {
+    onSuccess: (tracks: any[]) => void;
+    onClearSearch: () => void;
+}
 
-    const handleSubmit = async(e) => {
+const Searchbar: React.FC<Props> = ({ onSuccess, onClearSearch }) => {
+    const [inputSearch, setInputSearch] = useState<string>('');
+    const accessToken: string = useSelector(
+        (state: TRootState) => state.auth.accessToken,
+    );
+
+    const handleInput = (e: React.ChangeEvent) => {
+        const target = e.target as HTMLTextAreaElement;
+        setInputSearch(target.value);
+    };
+
+    const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
 
         try {
@@ -21,30 +34,32 @@ function Searchbar({ onSuccess, onClearSearch }) {
         }
     };
 
-    const clearSearch = () => {
+    const clearSearch: () => void = () => {
         setInputSearch('');
         onClearSearch();
     };
 
     return (
-        <Box maxW="md" p={4} mx="auto" align="center">
-            <form onSubmit={(e) => handleSubmit(e)}>
+        <Box maxW="md" p={4} mx="auto">
+            <form onSubmit={handleSubmit}>
                 <InputGroup>
                     <Input
                         bg="white"
                         type="text"
                         name="query"
                         placeholder="masukkan keyword"
-                        onChange={(e) => setInputSearch(e.target.value)}
+                        onChange={handleInput}
                         required
                     />
                     <Button px={6} ml={2} colorScheme="teal" type="submit">Search</Button>
                 </InputGroup>
             </form>
 
-            <Button colorScheme="red" mx="auto" onClick={clearSearch} mt="20px">Refresh</Button>
+            <Center>
+                <Button colorScheme="red" mx="auto" onClick={clearSearch} mt="20px" align="center">Refresh</Button>
+            </Center>
         </Box>
     );
-}
+};
 
 export default Searchbar;

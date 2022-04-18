@@ -45,6 +45,9 @@
         "jsx-a11y/label-has-associated-control": "off",
         "no-use-before-define": "off",
         "max-len": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".jsx"] }],
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "react/function-component-definition": "off"
     }
 }

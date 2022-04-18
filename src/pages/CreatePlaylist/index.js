@@ -3,7 +3,7 @@ import {
     Container, SimpleGrid, Heading, Text,
 } from '@chakra-ui/react';
 import Playlist from '../../components/Playlist';
-import Searchbar from '../../components/Searchbar';
+import Searchbar from '../../components/Searchbar/index.tsx';
 import FormPlaylist from '../../components/FormPlaylist';
 import Navbar from '../../components/Navbar';
 
