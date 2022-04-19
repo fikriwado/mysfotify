@@ -47,6 +47,7 @@ const Searchbar: React.FC<Props> = ({ onSuccess, onClearSearch }) => {
                         bg="white"
                         type="text"
                         name="query"
+                        aria-label="search-input"
                         placeholder="masukkan keyword"
                         onChange={handleInput}
                         required
@@ -56,7 +57,7 @@ const Searchbar: React.FC<Props> = ({ onSuccess, onClearSearch }) => {
             </form>
 
             <Center>
-                <Button colorScheme="red" mx="auto" onClick={clearSearch} mt="20px" align="center">Refresh</Button>
+                <Button colorScheme="red" mx="auto" onClick={clearSearch} mt="20px">Refresh</Button>
             </Center>
         </Box>
     );
