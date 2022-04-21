@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Myspotify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is the result of my learning at GIGIH Generation by YABB & GoTo. I created a simple website with Reactjs and consumes spotify's api with the create playlist feature.
+
+![Tux, the Linux mascot](./public/thumbnail.png)
 
 ## Available Scripts
 
